@@ -1,69 +1,76 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-import axios from "axios";
 
 function App() {
-
   const [movie, setMovie] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchData = async() => {
+  const fetchMovies = async (query = "") => {
     if (!movie.trim()) return;
-    setLoading(true)
-
+    setLoading(true);
     try {
       const response = await fetch("http://localhost:8080/movies", {
-        method: "POST",
+        method: query ? "POST" : "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({movie: movie}),
-      })
-      if(response.ok) {
-        const json = await response.json()
-        console.log(data)
+        body: query ? JSON.stringify({ movie: query }) : null,
+      });
+      if (response.ok) {
+        const json = await response.json();
         setData(json.results || []);
       } else {
-        console.error("Failed to fetch")
+        console.error("Failed to fetch");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
-  return <div>
-    <input type="text" value={movie} onChange={(e) => {setMovie(e.target.value)}} />
-    <button 
-    onClick={() => {
-      fetchData();
-    }}
-    >
-      Search
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
+    return (
+    <div>
+      <h2>🎬 Egyptian Arabic Movies</h2>
+
+      <input
+        type="text"
+        value={movie}
+        onChange={(e) => setMovie(e.target.value)}
+        placeholder="Search for a movie..."
+      />
+
+      <button
+        onClick={() => {
+          fetchMovies(movie);
+        }}
+      >
+        Search
       </button>
-    {loading ? <p>Loading</p> : null}
-    <hr />
 
-  
-      {data.length > 0 && (
-  <ul>
-  {data.map ((m) => (
-    <li key={m.id}>
-    <h3>{m.original_title}</h3>
-    </li>
-   ))}
-   </ul>
-   )}
-  </div>
-  
-  //           <span >{array}</span>
+      {loading && <p>Loading...</p>}
 
-  //         ))}
-  //     <h1>Hallo</h1>
-  //   </>
-  // );
+      <hr />
+
+      {data.length > 0 ? (
+        <ul>
+          {data.map((m) => (
+            <li key={m.id}>
+              <h3>{m.title || m.original_title}</h3>
+              {m.overview && <p>{m.overview}</p>}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        !loading && <p>No movies found.</p>
+      )}
+    </div>
+  );
 }
 
 export default App;
