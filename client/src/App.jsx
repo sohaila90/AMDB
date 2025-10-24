@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import axios from "axios";
 
@@ -9,6 +9,7 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   const fetchData = async() => {
+    if (!movie.trim()) return;
     setLoading(true)
 
     try {
@@ -20,9 +21,9 @@ function App() {
         body: JSON.stringify({movie: movie}),
       })
       if(response.ok) {
-        const data = await response.json()
+        const json = await response.json()
         console.log(data)
-        setData(data)
+        setData(json.results || []);
       } else {
         console.error("Failed to fetch")
       }
@@ -44,31 +45,19 @@ function App() {
       </button>
     {loading ? <p>Loading</p> : null}
     <hr />
-    <div></div>
+
+  
+      {data.length > 0 && (
+  <ul>
+  {data.map ((m) => (
+    <li key={m.id}>
+    <h3>{m.original_title}</h3>
+    </li>
+   ))}
+   </ul>
+   )}
   </div>
-  // // const [count, setCount] = useState(0);
-  // const [array, setArray] = useState([]);
-
-  // // const fetchAPI = async () => {
-  // //   const response = await axios.get("http://localhost:8080/movies");
-  // //   setArray(response.data.movies);
-  // // };
-
-  // useEffect(() => {
-  //   fetch(
-  //     "https://api.themoviedb.org/3/discover/movie?api_key=47d3a098d06ebffba749d6fe35c2b95e"
-  //   )
-  //     .then((res) => res.json())
-  //     .then((json) => setArray(json.results));
-
-  //   // fetchAPI("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ar-EGY&page=1&region=Egypt&sort_by=popularity.desc&with_origin_country=EG&with_original_language=ar");
-  //   App();
-  // }, []);
-  // console.log(setArray);
-  // return (
-  //   <>
-  //      { setArray.map((array) => (
-
+  
   //           <span >{array}</span>
 
   //         ))}
