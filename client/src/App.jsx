@@ -19,7 +19,7 @@ function App() {
       });
       if (response.ok) {
         const json = await response.json();
-        setData(json.results || []);
+        setData(Array.isArray(json) ? json : json.results || []);
       } else {
         console.error("Failed to fetch");
       }
@@ -29,6 +29,7 @@ function App() {
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     fetchMovies();
