@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./App.css";
-
+import Navbar from "./components/navbar/navbar";
 function App() {
   const [movie, setMovie] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchMovies = async (query = "") => {
+  const fetchMovies = useCallback(async (query = "") => {
     if (!movie.trim()) return;
     setLoading(true);
     try {
@@ -28,16 +28,25 @@ function App() {
     } finally {
       setLoading(false);
     }
-  };
-
+  }, []);
 
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [fetchMovies]);
 
-    return (
+  return (
     <div>
-      <h2>🎬 Egyptian Arabic Movies</h2>
+      <button>Top movies</button>
+      <button>High rated movies</button>
+      <button>80s movies</button>
+      <button>90s movies</button>
+      <h2>🎬 Egyptian Movies</h2>
+      <p>
+        Welcome to the movie database for egyptian movies translated to english.
+        <br />
+        On this site you will find many movies ranging from comedy to drama and
+        so on.
+      </p>
 
       <input
         type="text"
@@ -70,6 +79,7 @@ function App() {
       ) : (
         !loading && <p>No movies found.</p>
       )}
+        <Navbar />
     </div>
   );
 }
