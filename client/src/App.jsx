@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import Navbar from "./components/navbar/navbar";
+import Searchbar from "./components/navbar/searchbar";
+import Startintro from "./components/startintro";
 function App() {
   const [movie, setMovie] = useState("");
   const [data, setData] = useState([]);
@@ -28,7 +30,7 @@ function App() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  });
 
   useEffect(() => {
     fetchMovies();
@@ -36,50 +38,16 @@ function App() {
 
   return (
     <div>
-      <button>Top movies</button>
-      <button>High rated movies</button>
-      <button>80s movies</button>
-      <button>90s movies</button>
-      <h2>🎬 Egyptian Movies</h2>
-      <p>
-        Welcome to the movie database for egyptian movies translated to english.
-        <br />
-        On this site you will find many movies ranging from comedy to drama and
-        so on.
-      </p>
 
-      <input
-        type="text"
-        value={movie}
-        onChange={(e) => setMovie(e.target.value)}
-        placeholder="Search for a movie..."
+      <Navbar
+        movie={movie}
+        setMovie={setMovie}
+        fetchMovies={fetchMovies}
+        data={data}
+        loading={loading}
       />
 
-      <button
-        onClick={() => {
-          fetchMovies(movie);
-        }}
-      >
-        Search
-      </button>
-
-      {loading && <p>Loading...</p>}
-
-      <hr />
-
-      {data.length > 0 ? (
-        <ul>
-          {data.map((m) => (
-            <li key={m.id}>
-              <h3>{m.title || m.original_title}</h3>
-              {m.overview && <p>{m.overview}</p>}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        !loading && <p>No movies found.</p>
-      )}
-        <Navbar />
+      <Startintro />
     </div>
   );
 }
