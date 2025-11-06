@@ -3,6 +3,9 @@ import "./App.css";
 import Navbar from "./components/navbar/navbar";
 import Searchbar from "./components/navbar/searchbar";
 import Startintro from "./components/startintro";
+import NewestMovies from "./components/main/newestmovies";
+
+
 function App() {
   const [movie, setMovie] = useState("");
   const [data, setData] = useState([]);
@@ -48,6 +51,8 @@ function App() {
       />
 
       <Startintro />
+      <NewestMovies/>
+      
     </div>
   );
 }
