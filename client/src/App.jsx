@@ -4,6 +4,7 @@ import Navbar from "./components/navbar/navbar";
 import Searchbar from "./components/navbar/searchbar";
 import Startintro from "./components/startintro";
 import NewestMovies from "./components/main/newestmovies";
+import MostPopularMovies from "./components/main/mostpopularmovies"
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
 
       <Startintro />
       <NewestMovies/>
+      <MostPopularMovies/>
       
     </div>
   );
