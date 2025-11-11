@@ -6,7 +6,6 @@ import Startintro from "./components/startintro";
 import NewestMovies from "./components/main/newestmovies";
 import MostPopularMovies from "./components/main/mostpopularmovies"
 
-
 function App() {
   const [movie, setMovie] = useState("");
   const [data, setData] = useState([]);

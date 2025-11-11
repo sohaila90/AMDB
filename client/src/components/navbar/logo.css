@@ -1,0 +1,23 @@
+.logo {
+.logo {
+  display: inline-block; /* ikke flex her */
+  margin: 0;
+  padding: 0;
+}
+
+}
+
+.logo img {
+  display: block;
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+  margin-left: -24px; /* flytter bildet 8px ut til venstre */
+  margin-top: -35px;
+}
+
+
+.logo img:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}

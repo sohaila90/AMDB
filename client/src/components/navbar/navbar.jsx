@@ -1,12 +1,11 @@
-import React from "react";
 import "./navbar.css";
 import Searchbar from "./searchbar";
+import Logo from "./logo";
 
 const Navbar = ({ movie, setMovie, fetchMovies, data, loading }) => {
   return (
   <div className="navbar">
-    <h2>Navbar</h2>
-  
+   <Logo />
   <Searchbar
   movie={movie}
   setMovie={setMovie}

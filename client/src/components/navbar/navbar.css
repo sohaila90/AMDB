@@ -1,0 +1,14 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e05c75;
+  color: white;
+  padding: 10px 30px 10px 0; /* <-- fjernet venstre padding helt */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  margin-left: 0;
+}
+
