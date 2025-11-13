@@ -5,6 +5,7 @@ import Searchbar from "./components/navbar/searchbar";
 import Startintro from "./components/startintro";
 import NewestMovies from "./components/main/newestmovies";
 import MostPopularMovies from "./components/main/mostpopularmovies"
+import RandomMovies from "./components/main/randommovies";
 
 function App() {
   const [movie, setMovie] = useState("");
@@ -24,7 +25,7 @@ function App() {
       });
       if (response.ok) {
         const json = await response.json();
-        setData(Array.isArray(json) ? json : json.results || []);
+        setData(Array.isArray(json) ? json : json.results || [movie]);
       } else {
         console.error("Failed to fetch");
       }
@@ -33,7 +34,7 @@ function App() {
     } finally {
       setLoading(false);
     }
-  });
+  }, [movie]);
 
   useEffect(() => {
     fetchMovies();
@@ -53,6 +54,7 @@ function App() {
       <Startintro />
       <NewestMovies/>
       <MostPopularMovies/>
+      <RandomMovies />
       
     </div>
   );

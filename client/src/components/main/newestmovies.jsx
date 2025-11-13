@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const NewestMovies = () => {
   // state for å lagre filmene
-  const [movies, setMovies] = useState([]);
+  const [newestMovies, setNewestMovies] = useState([]);
   // useeffect kjører bare en gang når komp lastes
   useEffect(() => {
     // async func inni useeffect for å kunne bruke await
@@ -14,7 +14,7 @@ const NewestMovies = () => {
         }
 
         const data = await response.json(); // json fra flask
-        setMovies(data.results); // lagrer filmene i state
+        setNewestMovies(data.results); // lagrer filmene i state
       } catch (error) {
         console.error(error.message);
       }
@@ -27,11 +27,11 @@ const NewestMovies = () => {
   return (
     <div>
         <h2>Newest movies</h2>
-        {movies.length === 0 ? (
+        {newestMovies.length === 0 ? (
             <p>Loading...</p>
         ) : (
             <ul>
-            {movies.map((m) => (
+            {newestMovies.map((m) => (
                 <li key={m.id}>{m.title}</li>
             ))}
             </ul>

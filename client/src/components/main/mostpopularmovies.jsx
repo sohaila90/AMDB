@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const MostPopularMovies = () => {
-  const [movies, setMovies] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
   useEffect(() => {
     const fetchMovies = async () => {
         try {
@@ -10,7 +10,7 @@ const MostPopularMovies = () => {
                 throw new Error(`Response status: ${response.status}`);
             }
             const data = await response.json();
-            setMovies(data.results);
+            setPopularMovies(data.results);
         } catch (error) {
             console.error(error.message);
         }
@@ -22,11 +22,11 @@ const MostPopularMovies = () => {
 return (
     <div>
         <h2>Most popular movies</h2>
-        {movies.length === 0 ? (
+        {popularMovies.length === 0 ? (
             <p>Loading...</p>
         ) : (
             <ul>
-            {movies.map((m) => (
+            {popularMovies.map((m) => (
                 <li key={m.id}>{m.title}</li>
             ))}
              </ul>
