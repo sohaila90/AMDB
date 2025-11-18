@@ -52,6 +52,7 @@ function App() {
       />
 
       <Startintro />
+      <Searchbar />
       <NewestMovies/>
       <MostPopularMovies/>
       <RandomMovies />
