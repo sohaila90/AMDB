@@ -1,11 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import Navbar from "./components/navbar/navbar";
-import Searchbar from "./components/navbar/searchbar";
 import Startintro from "./components/startintro";
 import NewestMovies from "./components/main/newestmovies";
 import MostPopularMovies from "./components/main/mostpopularmovies"
 import RandomMovies from "./components/main/randommovies";
+import HighestRatedMovies from "./components/main/highestratedmovies";
+import Searchbar from "./components/navbar/searchbar";
 
 function App() {
   const [movie, setMovie] = useState("");
@@ -52,10 +53,12 @@ function App() {
       />
 
       <Startintro />
-      <Searchbar />
       <NewestMovies/>
       <MostPopularMovies/>
       <RandomMovies />
+      <HighestRatedMovies />
+      {/* //hvorfor vil ikke searchbar funke her */}
+       {/* <Searchbar /> */}
       
     </div>
   );
