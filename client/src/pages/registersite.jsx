@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/registersite.css";
 
 const RegisterSite = () => {
   // eslint-disable-next-line no-unused-vars
@@ -31,18 +32,17 @@ const RegisterSite = () => {
         return;
       }
       const backendSuccess = await response.json();
-      setSuccessMessage(backendSuccess.message)
+      setSuccessMessage(backendSuccess.message);
       setErrorMessage("");
-      console.log(backendSuccess)
-    } 
-    catch (error) {
-        console.error(error.message)
-        console.log("SENDES TIL BACKEND:", { username: name, dob, password });
+      console.log(backendSuccess);
+    } catch (error) {
+      console.error(error.message);
+      console.log("SENDES TIL BACKEND:", { username: name, dob, password });
     }
   };
 
   return (
-    <div>
+    <div className="register-container">
       <input
         value={name} //force the input's value to match the state variable
         onChange={(e) => setName(e.target.value)} // and update the state variable on any edits
@@ -50,9 +50,9 @@ const RegisterSite = () => {
         placeholder="Name"
         type="text"
       />
-      <br />
+
       <input id="email" placeholder="Email" type="text" />
-      <br />
+
       <input
         value={dob}
         onChange={(e) => setDob(e.target.value)}
@@ -60,7 +60,7 @@ const RegisterSite = () => {
         placeholder="Birthday"
         type="date"
       />
-      <br />
+
       <input
         value={password}
         onChange={(e) => setPassword(e.target.value)}
@@ -68,7 +68,7 @@ const RegisterSite = () => {
         placeholder="Password"
         type="text"
       />
-      <br />
+
       <input
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
@@ -76,7 +76,7 @@ const RegisterSite = () => {
         placeholder="Confirm Password"
         type="text"
       />
-      <br />
+
       <button onClick={() => registerUser()}>Register</button>
       {errorMessage && <p>{errorMessage}</p>}
       {successMessage && <p>{successMessage}</p>}

@@ -1,13 +1,15 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import Navbar from "./components/navbar/navbar";
-import Startintro from "./components/startintro";
+import Startintro from "./components/main/startintro";
 import NewestMovies from "./components/main/newestmovies";
 import MostPopularMovies from "./components/main/mostpopularmovies";
 import RandomMovies from "./components/main/randommovies";
 import HighestRatedMovies from "./components/main/highestratedmovies";
 import Searchbar from "./components/navbar/searchbar";
-import RegisterSite from "./components/registersite";
+import RegisterSite from "./pages/registersite";
+import Home from "./pages/home";
 
 function App() {
   const [movie, setMovie] = useState("");
@@ -46,7 +48,7 @@ function App() {
   }, [fetchMovies]);
 
   return (
-    <div>
+    <Router>
       <Navbar
         movie={movie}
         setMovie={setMovie}
@@ -55,15 +57,36 @@ function App() {
         loading={loading}
       />
 
-      <RegisterSite />
-      <Startintro />
-      <NewestMovies />
-      <MostPopularMovies />
-      <RandomMovies />
-      <HighestRatedMovies />
-      {/* //hvorfor vil ikke searchbar funke her */}
-      {/* <Searchbar /> */}
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+
+        <Route path="/register" element={<RegisterSite />} />
+
+        <Route path="/home/startintro" element={<Startintro />} />
+
+        <Route
+          path="/home/highestratedmovies"
+          element={<HighestRatedMovies />} />
+
+        <Route path="/home/mostpopularmovies" element={<MostPopularMovies />} />
+
+        <Route path="/home/newestmovies" element={<NewestMovies />} />
+
+        <Route path="/home/randommovies" element={<RandomMovies />} />
+      
+      </Routes>
+    </Router>
+
+    // <RegisterSite />
+    // <Startintro />
+    // <NewestMovies />
+    // <MostPopularMovies />
+    // <RandomMovies />
+    // <HighestRatedMovies />
+
+    /* //hvorfor vil ikke searchbar funke her */
+    /* <Searchbar /> */
   );
 }
 

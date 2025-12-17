@@ -1,14 +1,30 @@
-.navbar {
+.main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #e05c75;
-  color: white;
-  padding: 10px 30px 10px 0; /* <-- fjernet venstre padding helt */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px 40px;
+  background: #d85b78;
 }
 
-.logo {
-  margin-left: 0;
+/* Searchbar styles */
+.search-box {
+  display: flex;
+  gap: 8px;
 }
+
+.search-box input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.search-box button {
+  padding: 8px 14px;
+  background: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
 

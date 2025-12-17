@@ -1,7 +1,7 @@
 
 const Searchbar = ({ movie, setMovie, fetchMovies, loading, data}) => {
     return (
-        <div>
+        <div className="search-box">
             <input
         type="text"
         value={movie}
