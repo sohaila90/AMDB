@@ -10,6 +10,8 @@ import HighestRatedMovies from "./components/main/highestratedmovies";
 import Searchbar from "./components/navbar/searchbar";
 import RegisterSite from "./pages/registersite";
 import Home from "./pages/home";
+import MovieDetails from "./pages/moviedetails";
+
 
 function App() {
   const [movie, setMovie] = useState("");
@@ -62,6 +64,9 @@ function App() {
         <Route path="/home" element={<Home />} />
 
         <Route path="/register" element={<RegisterSite />} />
+
+        <Route path="/movie/:id" element={<MovieDetails />} />
+        
 
         <Route path="/home/startintro" element={<Startintro />} />
 
